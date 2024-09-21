@@ -1,4 +1,6 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Any additional global styles you need */

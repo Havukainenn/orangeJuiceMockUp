@@ -101,7 +101,7 @@ const ThirdSlidingPanel: React.FC<ThirdSlidingPanelProps> = ({
 
               <div className="text-center max-w-md">
                 <p className="text-orange-600 mb-4">
-                  We'd love to hear from you! Feel free to reach out with any questions, project ideas, or general inquiries through the following contact information:
+                  We would love to hear from you! Feel free to reach out with any questions, project ideas, or general inquiries through the following contact information:
                 </p>
 
                 <p className="text-orange-600">contact@orangejuice.studios</p>
