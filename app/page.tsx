@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Head from 'next/head';
 import OrangeJuiceModelViewer from './components/JuiceboxModelViewer'; 
 import SlidingPanel from './components/SlidingPanel';
 import SecondSlidingPanel from './components/SecondSlidingPanel'; 
@@ -8,29 +7,6 @@ import ThirdSlidingPanel from './components/ThirdSlidingPanel';
 import { motion } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa'; 
 import Image from 'next/image'; 
-
-<Head>
-  <title>orange.JUICE Studios</title>
-  <meta
-    name="description"
-    content="View the orange.JUICE 3D model with Three.js and React Three Fiber"
-  />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {/* Favicon */}
-  <link rel="icon" href="/favicon.ico" />
-  {/* Apple Touch Icon */}
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  {/* Other sizes */}
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  {/* Manifest file */}
-  <link rel="manifest" href="/site.webmanifest" />
-  {/* Font link */}
-  <link
-    href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap"
-    rel="stylesheet"
-  />
-</Head>
 
 const Home: React.FC = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -81,19 +57,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500">
-      <Head>
-        <title>3D orangeJUICE Model Viewer</title>
-        <meta
-          name="description"
-          content="View the orangeJUICE 3D model with Three.js and React Three Fiber"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
+    
       <div className="relative w-full h-screen">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}
@@ -229,7 +193,7 @@ const Home: React.FC = () => {
           <h2 className="text-4xl font-bold text-black mb-12">GET.IN.TOUCH</h2>
           
           <p className="text-black mb-8">
-            WE'D LOVE TO HEAR FROM YOU! REACH OUT WITH ANY QUESTIONS, IDEAS, OR JUST TO SAY HI.
+            WE&apos;D LOVE TO HEAR FROM YOU! REACH OUT WITH ANY QUESTIONS, IDEAS, OR JUST TO SAY HI.
           </p>
 
           <form className="space-y-8">

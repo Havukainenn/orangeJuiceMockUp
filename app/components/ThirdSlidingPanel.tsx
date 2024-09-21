@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
 import Image from 'next/image'; 
 
-const wavyTextVariants = {
+const wavyTextVariants: Variants = {
   animate: {
     y: [0, -5, 0, 5, 0],
     transition: {
-      repeat: Infinity,
-      repeatType: 'mirror',
+      repeat: Number.MAX_SAFE_INTEGER, // Use a large finite number instead of Infinity
+      repeatType: 'mirror' as const,   // Assert as const to get the correct type
       duration: 2,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,      // Assert as const if needed
     },
   },
 };
@@ -66,7 +66,7 @@ const ThirdSlidingPanel: React.FC<ThirdSlidingPanelProps> = ({
 
           {/* Third Sliding Panel */}
           <motion.div
-            className="fixed top-0 left-0 w-[100%] h-[100%] sm:w-[33%] sm:h-[66%] bg-black shadow-lg z-50 overflow-auto"
+            className="fixed top-0 left-0 w-full h-full sm:w-[33%] sm:h-[66%] bg-black shadow-lg z-50 overflow-auto"
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}

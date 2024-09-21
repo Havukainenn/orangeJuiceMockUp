@@ -1,23 +1,23 @@
+// src/app/components/JuiceboxModelViewer.tsx
+
 'use client';
+
 import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, GLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib'; // Import GLTF type
 import Loader from './Loader';
+import * as THREE from 'three';
 
-type GLTFResult = GLTF & {
-  nodes: any; 
-  materials: any; 
-};
+// Component to load and display GLTF model
+const Juicebox: React.FC = () => {
+  const gltf = useGLTF('/models/juicebox/juicebox.gltf') as GLTF;
+  const juiceboxRef = useRef<THREE.Group>(null);
 
-// load and display GLTF model
-const Juicebox = () => {
-  const { scene } = useGLTF('/models/juicebox/juicebox.gltf') as GLTFResult;
-  const juiceboxRef = useRef<THREE.Object3D>(null);
-
-  // Animate 
+  // Animate
   useFrame(({ clock }) => {
     if (juiceboxRef.current) {
-      juiceboxRef.current.rotation.y += 0.007; 
+      juiceboxRef.current.rotation.y += 0.007;
       juiceboxRef.current.position.y = Math.sin(clock.getElapsedTime()) * 0.1; // Float up and down
     }
   });
@@ -25,10 +25,10 @@ const Juicebox = () => {
   return (
     <primitive
       ref={juiceboxRef}
-      object={scene}
-      scale={[0.05, 0.05, 0.05]} 
-      position={[0, 0, 0]} 
-      rotation={[0, Math.PI / 4, 0]} 
+      object={gltf.scene}
+      scale={[0.05, 0.05, 0.05]}
+      position={[0, 0, 0]}
+      rotation={[0, Math.PI / 4, 0]}
     />
   );
 };

@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
-import Image from 'next/image'; // For SVGs
+import Image from 'next/image';
 
-const wavyTextVariants = {
+const wavyTextVariants: Variants = {
   animate: {
     y: [0, -5, 0, 5, 0],
     transition: {
-      repeat: Infinity,
-      repeatType: 'mirror',
+      repeat: Number.MAX_SAFE_INTEGER, // Use a large finite number
+      repeatType: 'mirror' as const,   // Assert as const
       duration: 2,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,      // Assert as const if needed
     },
   },
 };
@@ -20,7 +20,7 @@ const wavyTextVariants = {
 interface SecondSlidingPanelProps {
   isOpen: boolean;
   onClose: () => void;
-  onOpenThirdPanel: () => void; 
+  onOpenThirdPanel: () => void;
 }
 
 const SecondSlidingPanel: React.FC<SecondSlidingPanelProps> = ({
