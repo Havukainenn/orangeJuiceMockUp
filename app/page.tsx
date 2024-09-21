@@ -1,101 +1,290 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import React, { useState } from 'react';
+import Head from 'next/head';
+import OrangeJuiceModelViewer from './components/JuiceboxModelViewer'; 
+import SlidingPanel from './components/SlidingPanel';
+import SecondSlidingPanel from './components/SecondSlidingPanel'; 
+import ThirdSlidingPanel from './components/ThirdSlidingPanel';
+import { motion } from 'framer-motion';
+import { FaArrowDown } from 'react-icons/fa'; 
+import Image from 'next/image'; 
+
+<Head>
+  <title>orange.JUICE Studios</title>
+  <meta
+    name="description"
+    content="View the orange.JUICE 3D model with Three.js and React Three Fiber"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {/* Favicon */}
+  <link rel="icon" href="/favicon.ico" />
+  {/* Apple Touch Icon */}
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  {/* Other sizes */}
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  {/* Manifest file */}
+  <link rel="manifest" href="/site.webmanifest" />
+  {/* Font link */}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap"
+    rel="stylesheet"
+  />
+</Head>
+
+const Home: React.FC = () => {
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isSecondPanelOpen, setIsSecondPanelOpen] = useState(false); // State for second panel
+  const [isThirdPanelOpen, setIsThirdPanelOpen] = useState(false); // State for third panel
+
+  const handleModelClick = () => {
+    setIsPanelOpen(true);
+  };
+
+  const handleClosePanel = () => {
+    setIsPanelOpen(false);
+  };
+
+  const handleOpenSecondPanel = () => {
+    setIsPanelOpen(false);
+    setIsSecondPanelOpen(true);
+  };
+
+  const handleCloseSecondPanel = () => {
+    setIsSecondPanelOpen(false);
+  };
+
+  const handleOpenThirdPanel = () => {
+    setIsSecondPanelOpen(false); // Close second panel
+    setIsThirdPanelOpen(true); // Open third panel
+  };
+
+  const handleCloseThirdPanel = () => {
+    setIsThirdPanelOpen(false);
+  };
+
+  const scrollToProducts = () => {
+    const productsSection = document.getElementById('our-products');
+    productsSection?.scrollIntoView({ behavior: 'smooth' });
+  
+    setTimeout(() => {
+      window.scrollBy(0, 75); 
+    }, 600); 
+  };
+
+  const scrollToContactForm = () => {
+    const contactFormSection = document.getElementById('contact-us');
+    if (contactFormSection) {
+      contactFormSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="relative w-full min-h-screen bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500">
+      <Head>
+        <title>3D orangeJUICE Model Viewer</title>
+        <meta
+          name="description"
+          content="View the orangeJUICE 3D model with Three.js and React Three Fiber"
         />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="relative w-full h-screen">
+        <motion.h1
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          whileHover={{ scale: 1.05 }}
+          className="absolute bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16 left-10 sm:left-12 md:left-14 lg:left-16 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black font-rubik tracking-widest z-10 cursor-pointer max-w-md sm:max-w-lg lg:max-w-xl break-words hover:text-orange-500"
+          onClick={handleModelClick}
+        >
+          orange.JUICE STUDIOS
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          whileHover={{ scale: 1.05 }}
+          className="absolute top-10 right-10 text-xl sm:text-2xl md:text-3xl font-bold text-black font-rubik tracking-wide z-10 cursor-pointer hover:text-yellow-500"
+          onClick={handleModelClick}
+        >
+          MORE.JUICE
+        </motion.h2>
+
+        <div className="w-full h-full flex items-center justify-center">
+          <div
+            className="w-full h-full cursor-pointer"
+            onClick={handleModelClick}
+            role="button"
+            tabIndex={0}
+            aria-label="Open Sliding Panel"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleModelClick();
+              }
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <OrangeJuiceModelViewer />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+      </div>
+
+      {/* Sliding Panels */}
+      <SlidingPanel
+        isOpen={isPanelOpen}
+        onClose={handleClosePanel}
+        onOpenSecondPanel={handleOpenSecondPanel}
+      />
+      <SecondSlidingPanel
+        isOpen={isSecondPanelOpen}
+        onClose={handleCloseSecondPanel}
+        onOpenThirdPanel={handleOpenThirdPanel} 
+      />
+      <ThirdSlidingPanel
+        isOpen={isThirdPanelOpen}
+        onClose={handleCloseThirdPanel} 
+        scrollToContactForm={scrollToContactForm} 
+      />
+
+      {/* Space */}
+      <div className="py-40"></div> 
+
+      {/* Our Projects Section */}
+<section id="our-products" className="w-full py-20 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto">
+    <h2 className="text-4xl font-bold text-center text-black-800 mb-16">
+      orange.JUICE.WORK
+    </h2>
+    <div className="space-y-36">
+      <div className="flex flex-col sm:flex-row justify-start items-center">
+        {/* Project Image */}
+        <div className="w-40 h-40 sm:w-40 sm:h-40 sm:ml-8 mb-4 sm:mb-0 lg:mr-8"> {/* Added lg:mr-8 to reintroduce gap */}
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/project1.svg" 
+            alt="Project One Image"
+            layout="responsive"
+            width={200}
+            height={200}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+        <div className="bg-black text-orange-500 p-8 rounded-lg shadow-md w-full sm:w-3/4 lg:w-2/3">
+          <h3 className="text-3xl font-semibold mb-4">Project.Kansas</h3>
+          <p>
+            Description of Project One. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row-reverse justify-end items-center">
+        {/* Project Image */}
+        <div className="w-40 h-40 sm:w-40 sm:h-40 sm:mr-8 mb-4 sm:mb-0 lg:ml-8"> {/* Added lg:ml-8 to reintroduce gap */}
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+            src="/project2.svg" 
+            alt="Project Two Image"
+            layout="responsive"
+            width={200}
+            height={200}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        </div>
+        <div className="bg-black text-orange-500 p-8 rounded-lg shadow-md w-full sm:w-3/4 lg:w-2/3">
+          <h3 className="text-3xl font-semibold mb-4">Project.monaco</h3>
+          <p>
+            Description of Project Two. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row justify-start items-center">
+        <div className="w-40 h-40 sm:w-40 sm:h-40 sm:ml-8 mb-4 sm:mb-0 lg:mr-8"> {/* Added lg:mr-8 to reintroduce gap */}
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+            src="/project3.svg" 
+            alt="Project Three Image"
+            layout="responsive"
+            width={200}
+            height={200}
           />
-          Go to nextjs.org →
-        </a>
+        </div>
+        <div className="bg-black text-orange-500 p-8 rounded-lg shadow-md w-full sm:w-3/4 lg:w-2/3">
+          <h3 className="text-3xl font-semibold mb-4">Project.babylon</h3>
+          <p>
+            Description of Project Three. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <div className="py-20"></div>
+
+      {/* Contact Us Section */}
+      <section id="contact-us" className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-yellow-400 via-orange-400 to-orange-500">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-black mb-12">GET.IN.TOUCH</h2>
+          
+          <p className="text-black mb-8">
+            WE'D LOVE TO HEAR FROM YOU! REACH OUT WITH ANY QUESTIONS, IDEAS, OR JUST TO SAY HI.
+          </p>
+
+          <form className="space-y-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full bg-transparent border-none text-black placeholder-black focus:outline-none focus:ring-0"
+              />
+              <div className="w-full h-[1px] bg-black mt-2"></div>
+            </div>
+
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full bg-transparent border-none text-black placeholder-black focus:outline-none focus:ring-0"
+              />
+              <div className="w-full h-[1px] bg-black mt-2"></div>
+            </div>
+
+            <div className="relative">
+              <textarea
+                placeholder="Your Message"
+                className="w-full bg-transparent border-none text-black placeholder-black focus:outline-none focus:ring-0"
+                rows={4}
+              />
+              <div className="w-full h-[1px] bg-black mt-2"></div>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-black text-orange-500 px-6 py-3 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <button
+        onClick={scrollToProducts}
+        className="fixed bottom-8 right-4 bg-black text-orange-500 p-3 rounded-full shadow-lg hover:bg-gray-800 transition-colors z-30"
+        aria-label="Scroll to Our Projects"
+      >
+        <FaArrowDown size={16} />
+      </button>
+
+      <footer className="w-full text-black py-6 text-center mt-auto">
+        <p className="text-sm">&copy; 2024 orange.JUICE Studios. All rights reserved.</p>
+        <p className="text-xs mt-2">This is not a real brand or company. This website is a fictional project for demonstration purposes only.</p>
       </footer>
     </div>
   );
-}
+};
+
+export default Home;
