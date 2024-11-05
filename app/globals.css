@@ -4,3 +4,17 @@
 @tailwind utilities;
 
 /* Any additional global styles you need */
+
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#__next {
+  overflow-x: hidden;
+}
